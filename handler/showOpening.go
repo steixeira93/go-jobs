@@ -1,9 +1,22 @@
 package handler
 
-import "github.com/gin-gonic/gin"
+import (
+	"net/http"
+
+	"github.com/gin-gonic/gin"
+	"github.com/steixeira93/gopportunities/schemas"
+)
 
 func ShowOpeningHandler(ctx *gin.Context) {
-	ctx.JSON(200, gin.H{
-		"message": "GET Opening",
-	})
+	id := ctx.Query("id")
+	if id == "" {
+		sendError(ctx, http.StatusBadRequest, "error")
+		return
+	}
+	opening := schemas.Opening{}
+	if err := db.First(&opening, id).Error; err != nil {
+		sendError(ctx, http.StatusNotFound, "opening not found")
+		return
+	}
+	sendSuccess(ctx, "show-opening", opening)
 }
