@@ -50,7 +50,7 @@ type UpdateOpeningRequest struct {
 }
 
 func (r *UpdateOpeningRequest) Validate() error {
-	if r.Role != "" || r.Company != "" || r.Location != "" || r.Link != "" || r.Remote != nil || r.Link != "" || r.Salary > 0 {
+	if r.Role != "" || r.Company != "" || r.Location != "" || r.Remote != nil || r.Link != "" || r.Salary > 0 {
 		return nil
 	}
 	return fmt.Errorf("params: at least one valid field must be provided")
