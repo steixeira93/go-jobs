@@ -1,4 +1,4 @@
-# gopportunities
+# Go Jobs
 
 ## Installation
 
